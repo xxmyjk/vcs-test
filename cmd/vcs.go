@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +16,17 @@ var vcsCmd = &cobra.Command{
 }
 
 func test() {
-	fmt.Println("hi~")
+	p := promptui.Prompt{
+		Label: "vcs >>",
+	}
+
+	for {
+		rs, err := p.Run()
+		fmt.Println(rs, err)
+		if rs == "exit" {
+			break
+		}
+	}
 }
 
 func init() {
